@@ -38,43 +38,40 @@ public class App {
         return vetor;
     }
 
-    static <T> String resumo(int[] vetor, Function<T, IOrdenador> ordenador){ 
+    static Integer[] transformarEmInteger(Object[] obj){
+        Integer[] array = new Integer[obj.length];
+
+        for (int i = 0; i < array.length; i++) {
+            array[i] = (Integer) obj[i];
+        }
+
+        return array;
+    }
+
+    static String resumo(IOrdenador ordenador){ 
         StringBuilder s = new StringBuilder();
-        
-        // ordenador.apply(vetor);
+
+        int tam = 20;
+        Integer[] vetor = gerarVetorObjetos(tam);
+
+        Integer[] vetorOrdenadoBolha = transformarEmInteger(ordenador.ordenar(vetor)); 
+
+        s.append("\n" + "Comparações: " + ordenador.getComparacoes());
+        s.append("\n" + "Movimentações: " + ordenador.getMovimentacoes());
+        s.append("\n" + "Tempo de ordenação (ms): " + ordenador.getTempoOrdenacao());
 
         return s.toString();
     } 
 
     public static void main(String[] args) {
-        int tam = 20;
-        Integer[] vetor = gerarVetorObjetos(tam);
 
+        System.out.println("\nTeste Vetor ordenado método Bolha:");
         BubbleSort<Integer> bolha = new BubbleSort<>();
-
-        Integer[] vetorOrdenadoBolha = bolha.ordenar(vetor);
-
-        System.out.println("\nVetor ordenado método Bolha:");
-        System.out.println("Comparações: " + bolha.getComparacoes());
-        System.out.println("Movimentações: " + bolha.getMovimentacoes());
-        System.out.println("Tempo de ordenação (ms): " + bolha.getTempoOrdenacao());
-
-        // System.out.println(resumo(vetor, BubbleSort::ordenar));
+        System.out.println(resumo(bolha));
 
 
-
-        Integer[] vetor2 = gerarVetorObjetos(tam);
-
-        InsertionSort<Integer> insertion = new InsertionSort<>();
-
-        Integer[] vetorOrdenadoInsertion = insertion.ordenar(vetor);
-
-        System.out.println("\nVetor ordenado método Bolha:");
-        System.out.println("Comparações: " + insertion.getComparacoes());
-        System.out.println("Movimentações: " + insertion.getMovimentacoes());
-        System.out.println("Tempo de ordenação (ms): " + insertion.getTempoOrdenacao());
-
-        /* TO DO
+        /* 
+        TO DO
         *Fazer a implementacao do restante do main para a ordenacao 
         *  com os algoritmos InsertionSort e SelectionSort
         */
