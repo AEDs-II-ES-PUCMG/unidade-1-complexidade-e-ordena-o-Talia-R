@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Random;
+import java.util.function.Function;
 
 public class App {
     static final int[] tamanhosTesteGrande =  { 31_250_000, 62_500_000, 125_000_000, 250_000_000, 500_000_000 };
@@ -36,6 +37,13 @@ public class App {
         return vetor;
     }
 
+    static <T> String resumo(int[] vetor, Function<T, int[]> res){ 
+        StringBuilder s = new StringBuilder();
+        
+
+
+        return s.toString();
+    } 
 
     public static void main(String[] args) {
         int tam = 20;
