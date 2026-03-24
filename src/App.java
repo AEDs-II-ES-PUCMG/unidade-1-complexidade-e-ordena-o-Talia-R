@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Random;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class App {
@@ -37,10 +38,10 @@ public class App {
         return vetor;
     }
 
-    static <T> String resumo(int[] vetor, Function<T, int[]> res){ 
+    static <T> String resumo(int[] vetor, Function<T, IOrdenador> ordenador){ 
         StringBuilder s = new StringBuilder();
         
-
+        // ordenador.apply(vetor);
 
         return s.toString();
     } 
@@ -57,6 +58,21 @@ public class App {
         System.out.println("Comparações: " + bolha.getComparacoes());
         System.out.println("Movimentações: " + bolha.getMovimentacoes());
         System.out.println("Tempo de ordenação (ms): " + bolha.getTempoOrdenacao());
+
+        // System.out.println(resumo(vetor, BubbleSort::ordenar));
+
+
+
+        Integer[] vetor2 = gerarVetorObjetos(tam);
+
+        InsertionSort<Integer> insertion = new InsertionSort<>();
+
+        Integer[] vetorOrdenadoInsertion = insertion.ordenar(vetor);
+
+        System.out.println("\nVetor ordenado método Bolha:");
+        System.out.println("Comparações: " + insertion.getComparacoes());
+        System.out.println("Movimentações: " + insertion.getMovimentacoes());
+        System.out.println("Tempo de ordenação (ms): " + insertion.getTempoOrdenacao());
 
         /* TO DO
         *Fazer a implementacao do restante do main para a ordenacao 
