@@ -69,6 +69,10 @@ public class App {
         BubbleSort<Integer> bolha = new BubbleSort<>();
         System.out.println(resumo(bolha));
 
+        System.out.println("\nTeste Vetor ordenado método Insertion Sort:");
+        InsertionSort<Integer> insertion = new InsertionSort<>();
+        System.out.println(resumo(insertion));
+
 
         /* 
         TO DO
