@@ -48,36 +48,67 @@ public class App {
         return array;
     }
 
-    static String resumo(IOrdenador ordenador){ 
+    static String resumo(int[] tamanhos, IOrdenador ordenador){ 
         StringBuilder s = new StringBuilder();
+        for (int i = 0; i < tamanhos.length; i++) {
+            Integer[] vetor = gerarVetorObjetos(tamanhos[i]);
 
-        int tam = 20;
-        Integer[] vetor = gerarVetorObjetos(tam);
+            Integer[] vetorOrdenado = transformarEmInteger(ordenador.ordenar(vetor)); 
 
-        Integer[] vetorOrdenadoBolha = transformarEmInteger(ordenador.ordenar(vetor)); 
-
-        s.append("\n" + "Comparações: " + ordenador.getComparacoes());
-        s.append("\n" + "Movimentações: " + ordenador.getMovimentacoes());
-        s.append("\n" + "Tempo de ordenação (ms): " + ordenador.getTempoOrdenacao());
+            s.append(String.format("\nTamanho: %15d | Comparações: %15d | Movimentações: %15d | Tempo de ordenação (ms): %15.2f",
+                                    tamanhos[i],
+                                    ordenador.getComparacoes(),
+                                    ordenador.getMovimentacoes(),
+                                    ordenador.getTempoOrdenacao()
+                                ));
+        
+        }
 
         return s.toString();
     } 
 
     public static void main(String[] args) {
 
-        System.out.println("\nTeste Vetor ordenado método Bolha:");
-        BubbleSort<Integer> bolha = new BubbleSort<>();
-        System.out.println(resumo(bolha));
+        //#region método BubbleSort
+            System.out.println("\n ---- Teste Vetor ordenado método Bolha ----");
+            BubbleSort<Integer> bolha = new BubbleSort<>();
 
-        System.out.println("\nTeste Vetor ordenado método Insertion Sort:");
-        InsertionSort<Integer> insertion = new InsertionSort<>();
-        System.out.println(resumo(insertion));
+            System.out.println("\nTamanhos de vetor médio:");
+            //System.out.println(resumo(tamanhosTesteMedio, bolha));
 
+            System.out.println("\n" + "-".repeat(40));
 
-        /* 
-        TO DO
-        *Fazer a implementacao do restante do main para a ordenacao 
-        *  com os algoritmos InsertionSort e SelectionSort
-        */
+            System.out.println("\nTamanhos de vetor grande:");
+            //System.out.println(resumo(tamanhosTesteGrande, bolha)); 
+
+        //#endregion
+         
+        //#region método Insertionsort
+            System.out.println("\n ---- Teste Vetor ordenado método Insertion Sort ----");
+            InsertionSort<Integer> insertion = new InsertionSort<>();
+
+            System.out.println("\nTamanhos de vetor médio:");
+            System.out.println(resumo(tamanhosTesteMedio, insertion));
+
+            System.out.println("\n" + "-".repeat(40));
+
+            System.out.println("\nTamanhos de vetor grande:");
+            System.out.println(resumo(tamanhosTesteGrande, insertion));
+        //#endregion
+
+        //#region método Selectionsort
+            System.out.println("\n ---- Teste Vetor ordenado método Insertion Sort ----");
+            SelectionSort<Integer> selection = new SelectionSort<>();
+
+            System.out.println("\nTamanhos de vetor médio:");
+            System.out.println(resumo(tamanhosTesteMedio, selection));
+
+            System.out.println("\n" + "-".repeat(40));
+
+            System.out.println("\nTamanhos de vetor grande:");
+            System.out.println(resumo(tamanhosTesteGrande, selection));
+
+        //#endregion
+
     }
 }
