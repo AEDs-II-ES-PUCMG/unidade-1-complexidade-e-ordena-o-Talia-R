@@ -74,12 +74,12 @@ public class App {
             BubbleSort<Integer> bolha = new BubbleSort<>();
 
             System.out.println("\nTamanhos de vetor médio:");
-            //System.out.println(resumo(tamanhosTesteMedio, bolha));
+            System.out.println(resumo(tamanhosTesteMedio, bolha));
 
             System.out.println("\n" + "-".repeat(40));
 
             System.out.println("\nTamanhos de vetor grande:");
-            //System.out.println(resumo(tamanhosTesteGrande, bolha)); 
+            System.out.println(resumo(tamanhosTesteGrande, bolha)); 
 
         //#endregion
          
