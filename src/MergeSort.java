@@ -5,6 +5,8 @@ public class MergeSort<T extends Comparable<T>> implements IOrdenador<T>{
 	* @param int dir: fim do array a ser ordenado
 	*/
 	// 1.a chamada do método mergesort: esq: 0; dir: array.length - 1
+	
+	/* vira ordenar
 	private void mergesort(int[] array, int esq, int dir) {
 		if (esq < dir) {
 				int meio = (esq + dir) / 2;
@@ -13,6 +15,7 @@ public class MergeSort<T extends Comparable<T>> implements IOrdenador<T>{
 				intercalar(array, esq, meio, dir);
 			}
 	}
+	*/
 
 	/**
 	* Algoritmo que intercala os elementos localizados entre as posições esq e dir
@@ -20,7 +23,7 @@ public class MergeSort<T extends Comparable<T>> implements IOrdenador<T>{
 	* @param int meio: posição do meio do array a ser ordenado
 	* @param int dir: fim do array a ser ordenado
 	*/ 
-	private void intercalar(int[] array, int esq, int meio, int dir) {
+	private void intercalar(T[] dados, int esq, int meio, int dir) {
 
 		int n1, n2, i, j, k;
 
@@ -60,9 +63,13 @@ public class MergeSort<T extends Comparable<T>> implements IOrdenador<T>{
 	}
 
 	@Override
-	public T[] ordenar(T[] dados) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'ordenar'");
+	public T[] ordenar(T[] dados, int esq, int dir) {
+		if (esq < dir) {
+				int meio = (esq + dir) / 2;
+				ordenar(dados, esq, meio);
+				ordenar(dados, meio + 1, dir);
+				intercalar(dados, esq, meio, dir);
+			}
 	}
 
 	@Override
