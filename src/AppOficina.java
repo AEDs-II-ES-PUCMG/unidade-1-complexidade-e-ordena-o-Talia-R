@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -164,10 +165,45 @@ public class AppOficina {
 
     static void ordenarProdutos(){
         cabecalho();
-        
-        int opcao = exibirMenuOrdenadores();
-        //Complete com a sua lógica
         ordenador = null;
+        StringBuilder s = new StringBuilder(); 
+        Comparable[] produtoOrdenados = null;
+        Comparator<Produto> comparador = null;
+
+        
+        System.out.println("Escolha o método de ordenação:");
+        int opcao = exibirMenuOrdenadores();
+
+        switch(opcao){
+            case 1 ->{
+                ordenador = new Bubblesort<>();
+            }
+            case 2 ->{
+                ordenador = new InsertSort<>();
+            }
+            case 3 ->{
+                ordenador = new SelectionSort<>();
+            }
+            case 4 ->{
+                ordenador = new MergeSort<>();
+            }
+            
+        }
+        System.out.println("Escolha o critério de ordenação:");
+        opcao = exibirMenuComparadores();
+
+        switch(opcao){
+            case 1 -> comparador = new ComparadorPorCodigo();
+            case 2 -> comparador = new ComparadorPorDescricao();
+        }
+
+        produtoOrdenados = ordenador.ordenar(produtos, comparador);
+        
+        for(int i = 0; i < produtos.length; i++){
+            s.append("\n" + produtoOrdenados[i].toString());
+        }
+
+        System.out.println(s.toString());
     }
 
     static void embaralharProdutos(){

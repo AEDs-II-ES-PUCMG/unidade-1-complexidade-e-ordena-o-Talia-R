@@ -6,5 +6,5 @@ public class ComparadorPorCodigo implements Comparator<Produto>{
     public int compare(Produto o1, Produto o2) {
         return o1.hashCode() - o2.hashCode();
     }
-    
+
 }
