@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -68,47 +69,61 @@ public class App {
     } 
 
     public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+        int opcao = Integer.parseInt(entrada.nextLine());
 
-        //#region método BubbleSort
-            System.out.println("\n ---- Teste Vetor ordenado método Bolha ----");
-            BubbleSort<Integer> bolha = new BubbleSort<>();
+        switch(opcao){
+            case 1 -> {
+                System.out.println("Bolha");
+                System.out.println("\n ---- Teste Vetor ordenado método BubbleSort ----");
+                BubbleSort<Integer> bolha = new BubbleSort<>();
 
-            System.out.println("\nTamanhos de vetor médio:");
-            System.out.println(resumo(tamanhosTesteMedio, bolha));
+                System.out.println("\nTamanhos de vetor médio:");
+                System.out.println(resumo(tamanhosTesteMedio, bolha));
 
-            System.out.println("\n" + "-".repeat(40));
+                System.out.println("\n" + "-".repeat(40));
 
-            System.out.println("\nTamanhos de vetor grande:");
-            System.out.println(resumo(tamanhosTesteGrande, bolha)); 
+                System.out.println("\nTamanhos de vetor grande:");
+                System.out.println(resumo(tamanhosTesteGrande, bolha)); 
+                }
+            case 2 -> {
+                System.out.println("\n ---- Teste Vetor ordenado método InsertionSort ----");
+                InsertionSort<Integer> insertion = new InsertionSort<>();
 
-        //#endregion
-         
-        //#region método Insertionsort
-            System.out.println("\n ---- Teste Vetor ordenado método Insertion Sort ----");
-            InsertionSort<Integer> insertion = new InsertionSort<>();
+                System.out.println("\nTamanhos de vetor médio:");
+                System.out.println(resumo(tamanhosTesteMedio, insertion));
 
-            System.out.println("\nTamanhos de vetor médio:");
-            System.out.println(resumo(tamanhosTesteMedio, insertion));
+                System.out.println("\n" + "-".repeat(40));
 
-            System.out.println("\n" + "-".repeat(40));
+                System.out.println("\nTamanhos de vetor grande:");
+                System.out.println(resumo(tamanhosTesteGrande, insertion));
+            }
+            case 3 -> {
+                System.out.println("\n ---- Teste Vetor ordenado método InsertionSort ----");
+                SelectionSort<Integer> selection = new SelectionSort<>();
 
-            System.out.println("\nTamanhos de vetor grande:");
-            System.out.println(resumo(tamanhosTesteGrande, insertion));
-        //#endregion
+                System.out.println("\nTamanhos de vetor médio:");
+                System.out.println(resumo(tamanhosTesteMedio, selection));
 
-        //#region método Selectionsort
-            System.out.println("\n ---- Teste Vetor ordenado método Insertion Sort ----");
-            SelectionSort<Integer> selection = new SelectionSort<>();
+                System.out.println("\n" + "-".repeat(40));
 
-            System.out.println("\nTamanhos de vetor médio:");
-            System.out.println(resumo(tamanhosTesteMedio, selection));
+                System.out.println("\nTamanhos de vetor grande:");
+                System.out.println(resumo(tamanhosTesteGrande, selection));
+            }
+            case 4 -> {
+                System.out.println("\n ---- Teste Vetor ordenado método Mergesorts ----");
+                MergeSort<Integer> merge = new MergeSort<>();
 
-            System.out.println("\n" + "-".repeat(40));
+                System.out.println("\nTamanhos de vetor médio:");
+                System.out.println(resumo(tamanhosTesteMedio, merge));
 
-            System.out.println("\nTamanhos de vetor grande:");
-            System.out.println(resumo(tamanhosTesteGrande, selection));
+                System.out.println("\n" + "-".repeat(40));
 
-        //#endregion
+                System.out.println("\nTamanhos de vetor grande:");
+                System.out.println(resumo(tamanhosTesteGrande, merge));
+
+            }
+        }
 
     }
 }
