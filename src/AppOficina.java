@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 /**
  * MIT License
@@ -36,8 +37,10 @@ public class AppOficina {
     static final int MAX_PEDIDOS = 100;
     static Produto[] produtos;
     static int quantProdutos = 0;
-    static String nomeArquivoDados = "produtos.txt";
+    static String nomeArquivoDados = "src/produtos.txt";
     static IOrdenador<Produto> ordenador;
+    static Produto[] produtosPorCodigo;
+    static Produto[] produtosPorDescricao;
 
     // #region utilidades
     static Scanner teclado;
@@ -129,14 +132,55 @@ public class AppOficina {
     static Produto localizarProduto() {
         cabecalho();
         System.out.println("Localizando um produto");
-        int numero = lerNumero("Digite o identificador do produto", Integer.class);
-        Produto localizado = null;
-        
-        for (int i = 0; i < quantProdutos && localizado == null; i++) {
-            if (produtos[i].hashCode() == numero)
-                localizado = produtos[i];
+        System.out.println("1 - Buscar por código");
+        System.out.println("2 - Buscar por descrição");
+
+        int opcao = lerNumero("Escolha", Integer.class);
+
+        if (opcao == 1) {
+            int codigo = lerNumero("Digite o código", Integer.class);
+            return buscarPorCodigo(codigo);
+        } else {
+            System.out.print("Digite a descrição: ");
+            String desc = teclado.nextLine();
+            return buscarPorDescricao(desc);
         }
-        return localizado;
+    }
+
+    static Produto buscarPorCodigo(int codigo){
+        int ini = 0;
+        int fim = quantProdutos - 1;
+
+        while (ini <= fim) {
+            int meio = (ini + fim) / 2;
+            int atual = produtosPorCodigo[meio].hashCode();
+
+            if (atual == codigo)
+                return produtosPorCodigo[meio];
+            else if (atual < codigo)
+                ini = meio + 1;
+            else
+                fim = meio - 1;
+        }
+            return null;
+    }
+
+    static Produto buscarPorDescricao(String descricao) {
+        int ini = 0;
+        int fim = quantProdutos - 1;
+
+        while (ini <= fim) {
+            int meio = (ini + fim) / 2;
+            int cmp = produtosPorDescricao[meio].getDescricao().compareToIgnoreCase(descricao);
+
+            if (cmp == 0)
+                return produtosPorDescricao[meio];
+            else if (cmp < 0)
+                ini = meio + 1;
+            else
+                fim = meio - 1;
+        }
+        return null;
     }
 
     private static void mostrarProduto(Produto produto) {
@@ -229,6 +273,12 @@ public class AppOficina {
         
         produtos = carregarProdutos(nomeArquivoDados);
         embaralharProdutos();
+
+        produtosPorCodigo = Arrays.copyOf(produtos,quantProdutos);
+        produtosPorDescricao = Arrays.copyOf(produtos,quantProdutos);
+
+        Arrays.sort(produtosPorCodigo, new ComparadorPorCodigo());
+        Arrays.sort(produtosPorDescricao, new ComparadorPorDescricao());
 
         int opcao = -1;
         

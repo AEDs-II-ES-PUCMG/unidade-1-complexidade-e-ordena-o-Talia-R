@@ -86,6 +86,10 @@ public abstract class Produto implements Comparable<Produto> {
      * @return Valor de venda do produto (double, positivo)
      */
     public abstract double valorDeVenda();
+
+    public String getDescricao(){
+        return descricao;
+    }
     
     @Override
     /**
