@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
@@ -176,7 +175,7 @@ public class AppOficina {
 
         switch(opcao){
             case 1 ->{
-                ordenador = new Bubblesort<>();
+                ordenador = new BubbleSort<>();
             }
             case 2 ->{
                 ordenador = new InsertSort<>();

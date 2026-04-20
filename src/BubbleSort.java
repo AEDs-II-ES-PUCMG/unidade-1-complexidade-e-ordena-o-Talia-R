@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 
-public class Bubblesort<T extends Comparable<T>> implements IOrdenador<T>{
+public class BubbleSort<T extends Comparable<T>> implements IOrdenador<T>{
 
 	private long comparacoes;
 	private long movimentacoes;
 	private LocalDateTime inicio;
 	private LocalDateTime termino;	
 	
-	public Bubblesort() {
+	public BubbleSort() {
 		comparacoes = 0;
 		movimentacoes = 0;
 	}
@@ -62,6 +62,9 @@ public class Bubblesort<T extends Comparable<T>> implements IOrdenador<T>{
 	}
 	
 	public double getTempoOrdenacao() {
-	    return  0;
+        if (inicio == null || termino == null) {
+            return 0;
+        }
+        return Duration.between(inicio, termino).toMillis();
 	}
 }
