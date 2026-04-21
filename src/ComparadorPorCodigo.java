@@ -8,3 +8,7 @@ public class ComparadorPorCodigo implements Comparator<Produto>{
     }
 
 }
+
+
+//  o montante financeiro total consolidado 
+// no carrinho de compras. 
